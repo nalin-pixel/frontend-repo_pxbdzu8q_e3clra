@@ -1,70 +1,67 @@
-import { motion } from 'framer-motion'
+import { motion } from 'framer-motion';
+
+const aboutPoints = [
+  'Front-end engineer focused on delightful UX',
+  '5+ years building React products at scale',
+  'Obsessed with micro-interactions & performance',
+  'Love design systems, accessibility, and craft',
+];
 
 export default function About() {
   return (
-    <section id="about" className="relative w-full bg-black text-neutral-200">
-      <div className="mx-auto max-w-6xl px-6 py-24">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.7 }}
-          className="grid grid-cols-1 md:grid-cols-12 gap-10 items-start"
-        >
-          <div className="md:col-span-5">
-            <h2 className="text-3xl md:text-4xl font-extrabold text-white">About Me</h2>
-            <p className="mt-4 text-neutral-300">
-              I design and build modern web products with an emphasis on performance,
-              accessibility, and motion. My work blends engineering discipline with
-              product intuition.
+    <section id="about" className="relative bg-black py-24 text-zinc-200">
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-yellow-500/40 to-transparent" />
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="grid items-start gap-10 md:grid-cols-2">
+          <div>
+            <motion.h2
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="text-3xl font-semibold text-zinc-100"
+            >
+              About me
+            </motion.h2>
+            <p className="mt-4 text-zinc-400">
+              I craft interfaces that feel alive, blending solid engineering with impeccable taste. My toolkit spans React, TypeScript, Tailwind, and motion design.
             </p>
-            <div className="mt-6 grid grid-cols-2 gap-4">
-              {["Performance", "Accessibility", "DX", "3D/Motion"].map((chip) => (
-                <span
-                  key={chip}
-                  className="rounded-full border border-yellow-400/40 bg-black/40 px-4 py-2 text-sm text-yellow-200"
+
+            <ul className="mt-8 space-y-3">
+              {aboutPoints.map((p, i) => (
+                <motion.li
+                  key={p}
+                  initial={{ opacity: 0, x: -10 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.4, delay: i * 0.05 }}
+                  className="flex items-center gap-3"
                 >
-                  {chip}
-                </span>
+                  <span className="h-1.5 w-1.5 rounded-full bg-gradient-to-tr from-yellow-400 to-amber-300 shadow-[0_0_12px_rgba(234,179,8,0.7)]" />
+                  <span className="text-zinc-300">{p}</span>
+                </motion.li>
               ))}
-            </div>
+            </ul>
           </div>
 
-          <div className="md:col-span-7">
-            <div className="relative overflow-hidden rounded-2xl border border-yellow-500/20 bg-gradient-to-br from-yellow-500/10 via-yellow-400/5 to-transparent p-8">
-              <div className="absolute -top-12 -right-12 h-40 w-40 rounded-full bg-yellow-500/10 blur-3xl" />
-              <motion.ul className="space-y-4">
-                {[
-                  {
-                    title: 'Product-led mindset',
-                    desc: 'I partner with design and product to ship meaningful outcomes, not just features.'
-                  },
-                  {
-                    title: 'Engineering craft',
-                    desc: 'I care about clean abstractions, pragmatic architecture, and elegant interactions.'
-                  },
-                  {
-                    title: 'Systems thinking',
-                    desc: 'From components to CI, I optimize for maintainability and speed.'
-                  }
-                ].map((item, i) => (
-                  <motion.li
-                    key={item.title}
-                    initial={{ opacity: 0, x: -16 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 }}
-                    className="rounded-xl border border-yellow-500/20 bg-black/40 p-5"
-                  >
-                    <h3 className="font-semibold text-white">{item.title}</h3>
-                    <p className="mt-1 text-sm text-neutral-300">{item.desc}</p>
-                  </motion.li>
+          <div className="relative">
+            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-tr from-yellow-500/20 to-amber-300/10 blur-xl" />
+            <div className="relative rounded-2xl border border-zinc-800 bg-zinc-900/60 p-6">
+              <div className="grid grid-cols-3 gap-4 text-center">
+                {[{ k: 'Projects', v: '30+' }, { k: 'Years', v: '5' }, { k: 'Clients', v: '14' }].map((s) => (
+                  <div key={s.k} className="rounded-xl border border-zinc-800/60 bg-zinc-900/60 p-4">
+                    <div className="text-2xl font-semibold text-yellow-300">{s.v}</div>
+                    <div className="text-xs text-zinc-400">{s.k}</div>
+                  </div>
                 ))}
-              </motion.ul>
+              </div>
+              <div className="mt-6 rounded-xl border border-zinc-800/60 bg-zinc-900/60 p-4 text-sm text-zinc-300">
+                Available for freelance and full-time roles. Based in UTC±0, open to remote work.
+              </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
-  )
+  );
 }
